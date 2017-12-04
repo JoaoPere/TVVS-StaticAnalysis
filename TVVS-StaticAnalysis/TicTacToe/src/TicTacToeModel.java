@@ -1,6 +1,8 @@
 public class TicTacToeModel
 {
     private char      playerToMove;                // who's move is it?
+    private boolean   computerIsOpponent;          // is opponent the computer?
+    private boolean   computerIsDifficult;         // easy[0], hard[1]
     private char[][]  gameBoard = new char[3][3];  // game board
     private int       moveCount;                   // counts the total moves played in game
     private boolean   gameIsComplete;              // monitor game completion state
@@ -34,10 +36,22 @@ public class TicTacToeModel
     //--------------------------//
 
     public char[][] getGameBoard()        { return gameBoard; }
+    public boolean  computerIsOpponent()  { return computerIsOpponent; }
+    public boolean  computerIsDifficult() { return computerIsDifficult; }
     public char     getPlayerToMove()     { return playerToMove; }
     public boolean  gameIsComplete()      { return gameIsComplete; }
     public char     getGameWinner()       { return gameWinner; }
     public WinPath  getWinPath()          { return winPath; }
+
+    public void setComputerIsOpponent ( boolean trueForComputerMode )
+    {
+        computerIsOpponent = trueForComputerMode;
+    }
+
+    public void setComputerIsDifficult ( boolean trueForDifficult )
+    {
+        computerIsDifficult = trueForDifficult;
+    }
 
     //-------------------//
     //    GAME SETUP     //
@@ -63,6 +77,7 @@ public class TicTacToeModel
     // Sets the opponent mode and starts a new game.
     public void startNewGame( boolean trueForComputerMode )
     {
+        computerIsOpponent = trueForComputerMode;
         startNewGame();
     }
 
@@ -112,8 +127,7 @@ public class TicTacToeModel
     private boolean rowWins()
     {
         for ( int i = 0; i < 3; i++ ) {
-            int xCount = 0;
-            int oCount = 0;
+            int xCount = 0, oCount = 0;
             for ( int j = 0; j < 3; j++ ) {
                 if ( gameBoard[i][j] == 'x' ) ++xCount;
                 if ( gameBoard[i][j] == 'o' ) ++oCount;
@@ -126,16 +140,14 @@ public class TicTacToeModel
             }
         }
         return false;
-    }
+    } // end rowWins()
 
     // Returns true if a winning column is found.
     // Sets the winner and the win path.
     private boolean colWins()
     {
         for ( int i = 0; i < 3; i++ ) {
-            int xCount = 0;
-            int oCount = 0;
-            
+            int xCount = 0, oCount = 0;
             for ( int j = 0; j < 3; j++ ) {
                 if ( gameBoard[j][i] == 'x' ) ++xCount;
                 if ( gameBoard[j][i] == 'o' ) ++oCount;
@@ -148,7 +160,7 @@ public class TicTacToeModel
             }
         }
         return false;
-    }
+    } // end colWins()
 
     // Returns true if a winning diagonal is found.
     // Sets the winner and the win path.
@@ -173,5 +185,5 @@ public class TicTacToeModel
         } else {
             return false;
         }
-    }
+    } // end diagWins()
 }  // end class TicTacToeModel

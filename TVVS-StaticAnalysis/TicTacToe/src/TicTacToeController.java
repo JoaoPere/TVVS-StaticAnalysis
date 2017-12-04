@@ -12,12 +12,12 @@ public class TicTacToeController
     //    Customization of the update messages can be done here.          // 
     //--------------------------------------------------------------------//
 
-    private static final String  STATUS_START        = "X moves to start the game";
-    private static final String  STATUS_CATS         = "Cat's game";
-    private static final String  STATUS_X_WINS       = "X wins the game!";
-    private static final String  STATUS_O_WINS       = "O wins the game!";
-    private static final String  STATUS_X_MOVES      = "X to move";
-    private static final String  STATUS_O_MOVES      = "O to move";
+    private final String  STATUS_START        = "X moves to start the game";
+    private final String  STATUS_CATS         = "Cat's game";
+    private final String  STATUS_X_WINS       = "X wins the game!";
+    private final String  STATUS_O_WINS       = "O wins the game!";
+    private final String  STATUS_X_MOVES      = "X to move";
+    private final String  STATUS_O_MOVES      = "O to move";
 
     //------------------------------//
     //    TIC-TAC-TOE CONTROLLER    //
@@ -68,7 +68,6 @@ public class TicTacToeController
                 // Ask model who moves next so we can update the view's game status label.
                 // This code block is only accessible when the user plays, so if we are in 
                 // computer mode we know the computer moves next.
-         
                 if ( model.getPlayerToMove() == 'x' ) {
                     gameStatus = STATUS_X_MOVES;
                 } else {
@@ -87,7 +86,7 @@ public class TicTacToeController
                 view.updateGameBoardUI( model.getGameBoard() );
                 performWinLineUpdates();
 
-            }
+            } // end if (!blockMove)
         } // end SquareListener actionPerformed
  
 

@@ -1,10 +1,3 @@
-//
-//  File: TicTacToeController.java
-//  Auth: Brian W. Howell
-//  Date: 20 January 2014
-//  Desc: Coordinates communication between the UI (view) and the model.
-//
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,13 +12,12 @@ public class TicTacToeController
     //    Customization of the update messages can be done here.          // 
     //--------------------------------------------------------------------//
 
-    private final String  STATUS_START        = "X moves to start the game";
-    private final String  STATUS_CATS         = "Cat's game";
-    private final String  STATUS_X_WINS       = "X wins the game!";
-    private final String  STATUS_O_WINS       = "O wins the game!";
-    private final String  STATUS_X_MOVES      = "X to move";
-    private final String  STATUS_O_MOVES      = "O to move";
-    private final String  STATUS_CP_MOVES     = "Computer is thinking...";
+    private static final String  STATUS_START        = "X moves to start the game";
+    private static final String  STATUS_CATS         = "Cat's game";
+    private static final String  STATUS_X_WINS       = "X wins the game!";
+    private static final String  STATUS_O_WINS       = "O wins the game!";
+    private static final String  STATUS_X_MOVES      = "X to move";
+    private static final String  STATUS_O_MOVES      = "O to move";
 
     //------------------------------//
     //    TIC-TAC-TOE CONTROLLER    //
@@ -76,9 +68,8 @@ public class TicTacToeController
                 // Ask model who moves next so we can update the view's game status label.
                 // This code block is only accessible when the user plays, so if we are in 
                 // computer mode we know the computer moves next.
-                if ( model.computerIsOpponent() ) {
-                    gameStatus = STATUS_CP_MOVES;
-                } else if ( model.getPlayerToMove() == 'x' ) {
+         
+                if ( model.getPlayerToMove() == 'x' ) {
                     gameStatus = STATUS_X_MOVES;
                 } else {
                     gameStatus = STATUS_O_MOVES;
@@ -96,7 +87,7 @@ public class TicTacToeController
                 view.updateGameBoardUI( model.getGameBoard() );
                 performWinLineUpdates();
 
-            } // end if (!blockMove)
+            }
         } // end SquareListener actionPerformed
  
 
@@ -150,36 +141,6 @@ public class TicTacToeController
             view.resetWinnerLine();                          // resets (hides) view winner line
             view.updateGameBoardUI( model.getGameBoard() );  // reset view gameboard
             view.updateGameStatusLabelText( STATUS_START );  // reset view game status label
-        }
-
-    } // end class NewGameButtonListener
-
-    // Class OpponentModeListener.
-    // Handles clicks of the Change Mode button.
-    class OpponentModeListener implements ActionListener
-    {
-        @Override
-        public void actionPerformed( ActionEvent e )
-        {
-            // Switch from 2 player to easy computer.
-            if ( !model.computerIsOpponent() ) {
-                model.setComputerIsOpponent( true );
-                model.setComputerIsDifficult( false );
-            } 
-            // Switch from easy to hard computer.
-            else if ( model.computerIsOpponent() && !model.computerIsDifficult() ) {
-                model.setComputerIsDifficult( true );
-            }
-            // Switch back to 2 player.
-            else
-            {
-                model.setComputerIsOpponent( false );
-            }
-            // Restart the game
-            model.startNewGame();
-            view.resetWinnerLine();
-            view.updateGameBoardUI( model.getGameBoard() );
-            view.updateGameStatusLabelText( STATUS_START );
         }
 
     } // end class NewGameButtonListener

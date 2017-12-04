@@ -20,48 +20,47 @@ public class TicTacToeView extends JFrame
     //----------------------------------------------------------//
 
     // General.
-    private final String   APP_TITLE           = "TIC-TAC-TOE";
-    private final String   APP_FONT            = "Sans Serif";
-    private final int      APP_WIDTH           = 400;
-    private final int      APP_HEIGHT          = 650;
-    private final int      APP_PADDING         = 25;
+    private static final String   APP_TITLE           = "TIC-TAC-TOE";
+    private static final String   APP_FONT            = "Sans Serif";
+    private static final int      APP_WIDTH           = 400;
+    private static final int      APP_HEIGHT          = 650;
+    private static final int      APP_PADDING         = 25;
     // Color scheme.
-    private final Color    BG_COLOR            = Color.WHITE;
-    private final Color    BG_COLOR_2          = Color.decode( "#EFFFF7" );  // off white
-    private final Color    TIC_TAC_NAVY        = Color.decode( "#34485D" );
-    private final Color    TIC_TAC_GREEN       = Color.decode( "#19BC9C" );
-    private final Color    TIC_TAC_RED         = Color.decode( "#E74C3C" );  // normal
-    private final Color    TIC_TAC_RED_2       = Color.decode( "#D94334" );  // hover
-    private final Color    TIC_TAC_RED_3       = Color.decode( "#EA6052" );  // press
-    private final Color    TIC_TAC_GRAY        = Color.decode( "#7F8C9A" );
+    private static final Color    BG_COLOR            = Color.WHITE;
+    private static final Color    BG_COLOR_2          = Color.decode( "#EFFFF7" );  // off white
+    private static final Color    TIC_TAC_NAVY        = Color.decode( "#34485D" );
+    private static final Color    TIC_TAC_GREEN       = Color.decode( "#19BC9C" );
+    private static final Color    TIC_TAC_RED         = Color.decode( "#E74C3C" );  // normal
+    private static final Color    TIC_TAC_RED_2       = Color.decode( "#D94334" );  // hover
+    private static final Color    TIC_TAC_RED_3       = Color.decode( "#EA6052" );  // press
     // FSU title bar.
-    private final String   TITLE_TEXT          = "Tic-Tac-Toe";
-    private final Color    TITLE_COLOR         = TIC_TAC_GREEN;
-    private final int      TITLE_FONT_SIZE     = 35;
-    private final int      TITLE_TOP_PAD       = 10;
-    private final int      TITLE_BTM_PAD       = 20;
+    private static final String   TITLE_TEXT          = "Tic-Tac-Toe";
+    private static final Color    TITLE_COLOR         = TIC_TAC_GREEN;
+    private static final int      TITLE_FONT_SIZE     = 35;
+    private static final int      TITLE_TOP_PAD       = 10;
+    private static final int      TITLE_BTM_PAD       = 20;
     // Gameboard
-    private final int      GAME_BOARD_SIZE     = APP_WIDTH - APP_PADDING;
-    private final Color    GAME_FONT_COLOR     = TIC_TAC_NAVY;
-    private final int      GAME_FONT_SIZE      = 75;
-    private final int      GAME_LINE_WIDTH     = 3;
-    private final Color    GAME_LINE_COLOR     = TIC_TAC_GREEN;
-    private final Color    GAME_HOVER_COLOR    = BG_COLOR_2;
+    private static final int      GAME_BOARD_SIZE     = APP_WIDTH - APP_PADDING;
+    private static final Color    GAME_FONT_COLOR     = TIC_TAC_NAVY;
+    private static final int      GAME_FONT_SIZE      = 75;
+    private static final int      GAME_LINE_WIDTH     = 3;
+    private static final Color    GAME_LINE_COLOR     = TIC_TAC_GREEN;
+    private static final Color    GAME_HOVER_COLOR    = BG_COLOR_2;
     // Game status label
-    private final String   STATUS_TEXT         = "X moves to start the game";
-    private final int      STATUS_FONT_SIZE    = 20;
-    private final Color    STATUS_COLOR        = TIC_TAC_NAVY;
-    private final int      STATUS_TOP_PAD      = 30;
-    private final int      STATUS_BTM_PAD      = 30;
+    private static final String   STATUS_TEXT         = "X moves to start the game";
+    private static final int      STATUS_FONT_SIZE    = 20;
+    private static final Color    STATUS_COLOR        = TIC_TAC_NAVY;
+    private static final int      STATUS_TOP_PAD      = 30;
+    private static final int      STATUS_BTM_PAD      = 30;
     // Bottom buttons
-    private final int      BTN_GAP             = 5;
-    private final int      BTN_HGT             = 125;
-    private final int      BTN_FONT_SIZE       = 16;
-    private final Color    BTN_TEXT_COLOR      = Color.WHITE;
-    private final String   NEW_GAME_BTN_TEXT   = "Start New Game";
-    private final Color    RESET_BG_COLOR      = TIC_TAC_RED;
-    private final Color    RESET_BG_HOVER      = TIC_TAC_RED_2;
-    private final Color    RESET_BG_PRESS      = TIC_TAC_RED_3;
+    private static final int      BTN_GAP             = 5;
+    private static final int      BTN_HGT             = 125;
+    private static final int      BTN_FONT_SIZE       = 16;
+    private static final Color    BTN_TEXT_COLOR      = Color.WHITE;
+    private static final String   NEW_GAME_BTN_TEXT   = "Start New Game";
+    private static final Color    RESET_BG_COLOR      = TIC_TAC_RED;
+    private static final Color    RESET_BG_HOVER      = TIC_TAC_RED_2;
+    private static final Color    RESET_BG_PRESS      = TIC_TAC_RED_3;
 
     // Opponent mode label
 
@@ -69,17 +68,21 @@ public class TicTacToeView extends JFrame
     //    TIC-TAC-TOE VIEW    //
     //------------------------//
 
-    private JButton    square[][]        = new JButton[3][3];                         // gameboard
-    private JLabel     gameStatusLabel   = new JLabel( STATUS_TEXT, JLabel.CENTER );  // game status
-    private JButton    resetBtn          = new JButton();                             // new game button
-    private WinnerLine winnerLine        = new WinnerLine();
+    private JButton[][] square      = new JButton[3][3];                         // gameboard
+    private JLabel      gameStatusLabel   = new JLabel( STATUS_TEXT, JLabel.CENTER );  // game status
+    private JButton     resetBtn          = new JButton();                             // new game button
+    private WinnerLine  winnerLine        = new WinnerLine();
 
     // Class WinnerLine
     // When game is won, add line marking 3 in a row on the gameboard.
     public class WinnerLine extends JPanel
     {
-        private int x1, y1, x2, y2;
+        private int x1;
+        private int y1;
+        private int x2;
+        private int y2;
 
+        @Override
         public void paintComponent( Graphics g )
         {
             super.paintComponent( g );
@@ -176,9 +179,9 @@ public class TicTacToeView extends JFrame
                     if ( j == 2 ) square[i][j].setBorderPainted( false );
                 }
                 gameBoard.add( square[i][j] ); // add the square
-            } // end for( int j = 0; j < 3; j++ )
-        } // end for( int i = 0; i < 3; i++ )
-
+            }
+        }
+        
         // Game status label.
         ticTacPanel.add( Box.createRigidArea( new Dimension( 0, STATUS_TOP_PAD )));  // pad top
         gameStatusLabel.setForeground( STATUS_COLOR );

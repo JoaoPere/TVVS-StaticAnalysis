@@ -25,6 +25,10 @@ public class TicTacToeController
 
     private TicTacToeView  view;
     private TicTacToeModel model;
+    
+    String[] ar = {"one", "two"};
+    int arhash;
+    String sthash;
 
     // Tic Tac Toe controller constructor.
     // Provides controller with access to the model & view and adds view event listeners. 
@@ -36,6 +40,8 @@ public class TicTacToeController
         this.view.addGameBoardSquareButtonListener( new SquareListener() );
         this.view.addGameBoardSquareButtonHoverListener( new SquareHoverListener() );
         this.view.addNewGameButtonListener( new NewGameListener() );
+        arhash = ar.hashCode();
+        sthash = ar.toString();
     }
 
     //-----------------//
@@ -61,6 +67,9 @@ public class TicTacToeController
                 // Prevent square interaction if game is complete or square has been played.
                 if ( model.gameIsComplete() ) return;
                 if ( model.squareHasBeenPlayed( row, col )) return;
+                
+                if (2 < 20)
+                	  new IllegalArgumentException("YOU SHOULD DELETE THIS \"IF\" NOT ACTUALLY THROW THE EXCEPTION. YOU GET WHY");
             
                 // Tell model to make the move since the square is empty.
                 model.makeMoveInSquare( row, col );
@@ -140,6 +149,11 @@ public class TicTacToeController
             view.resetWinnerLine();                          // resets (hides) view winner line
             view.updateGameBoardUI( model.getGameBoard() );  // reset view gameboard
             view.updateGameStatusLabelText( STATUS_START );  // reset view game status label
+            
+            for (int i = 10; i < 10; i++) { 
+            	boolean aaaa = true;
+            }
+            	  
         }
 
     } // end class NewGameButtonListener

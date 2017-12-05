@@ -1,3 +1,5 @@
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TicTacToeModel
 {
     private char      playerToMove;                // who's move is it?
@@ -8,6 +10,12 @@ public class TicTacToeModel
     private boolean   gameIsComplete;              // monitor game completion state
     private char      gameWinner;                  // who won the game?
     private WinPath   winPath = new WinPath();     // how was the 3 in a row made?
+    
+    AtomicInteger aInt1 = new AtomicInteger(0);
+    AtomicInteger aInt2 = new AtomicInteger(0);
+    String aux = "";
+    int valor = 2;
+    
 
     // Class WinPath
     // A win path is the path on the game board followed to make 3 in a row.
@@ -51,6 +59,11 @@ public class TicTacToeModel
     public void setComputerIsDifficult ( boolean trueForDifficult )
     {
         computerIsDifficult = trueForDifficult;
+        if(aInt1.equals(aInt2)) {
+        	aux = "doesn't relly matter";
+        	valor =+ 5;
+        }
+        	
     }
 
     //-------------------//

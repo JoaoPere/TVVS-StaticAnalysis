@@ -20,13 +20,13 @@ public class TicTacToeView extends JFrame
     //----------------------------------------------------------//
 
     // General.
-    private final String   APP_TITLE           = "TIC-TAC-TOE";
-    private final String   APP_FONT            = "Sans Serif";
+    public String   APP_TITLE           = "TIC-TAC-TOE";
+    public static String   APP_FONT            = "Sans Serif";
     private final int      APP_WIDTH           = 400;
     private final int      APP_HEIGHT          = 650;
     private final int      APP_PADDING         = 25;
     // Color scheme.
-    private final Color    BG_COLOR            = Color.WHITE;
+    private final Color    BG_COLOR            = Color.BLACK;
     private final Color    BG_COLOR_2          = Color.decode( "#EFFFF7" );  // off white
     private final Color    TIC_TAC_NAVY        = Color.decode( "#34485D" );
     private final Color    TIC_TAC_GREEN       = Color.decode( "#19BC9C" );
@@ -35,7 +35,7 @@ public class TicTacToeView extends JFrame
     private final Color    TIC_TAC_RED_3       = Color.decode( "#EA6052" );  // press
     private final Color    TIC_TAC_GRAY        = Color.decode( "#7F8C9A" );
     // FSU title bar.
-    private final String   TITLE_TEXT          = "Tic-Tac-Toe";
+    public String   TITLE_TEXT          = "Tic-Tac-Toe";
     private final Color    TITLE_COLOR         = TIC_TAC_GREEN;
     private final int      TITLE_FONT_SIZE     = 35;
     private final int      TITLE_TOP_PAD       = 10;
@@ -62,7 +62,7 @@ public class TicTacToeView extends JFrame
     private final Color    RESET_BG_COLOR      = TIC_TAC_RED;
     private final Color    RESET_BG_HOVER      = TIC_TAC_RED_2;
     private final Color    RESET_BG_PRESS      = TIC_TAC_RED_3;
-
+    
     // Opponent mode label
 
     //------------------------//
@@ -79,6 +79,10 @@ public class TicTacToeView extends JFrame
     public class WinnerLine extends JPanel
     {
         private int x1, y1, x2, y2;
+        
+        String hard = "Hard";
+        String medium = "Medium";
+        String easy = "Easy";
 
         public void paintComponent( Graphics g )
         {

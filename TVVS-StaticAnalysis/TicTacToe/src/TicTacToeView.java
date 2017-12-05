@@ -26,7 +26,7 @@ public class TicTacToeView extends JFrame
     private final int      APP_HEIGHT          = 650;
     private final int      APP_PADDING         = 25;
     // Color scheme.
-    private final Color    BG_COLOR            = Color.BLACK;
+    private final Color    BG_COLOR            = Color.WHITE;
     private final Color    BG_COLOR_2          = Color.decode( "#EFFFF7" );  // off white
     private final Color    TIC_TAC_NAVY        = Color.decode( "#34485D" );
     private final Color    TIC_TAC_GREEN       = Color.decode( "#19BC9C" );
